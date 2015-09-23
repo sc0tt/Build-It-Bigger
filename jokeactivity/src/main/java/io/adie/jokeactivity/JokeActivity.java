@@ -1,33 +1,34 @@
-package com.udacity.gradle.builditbigger;
+package io.adie.jokeactivity;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import io.adie.JokeProvider;
-import io.adie.jokeactivity.JokeActivity;
-
-
-public class MainActivity extends ActionBarActivity {
-    JokeProvider jp;
+public class JokeActivity extends AppCompatActivity {
+    public static final String JOKE_TAG = "io.adie.jokeactivity.JOKE";
+    TextView jokeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_joke);
 
-        jp = new JokeProvider();
+        jokeContainer = (TextView) findViewById(R.id.jokeResult);
+
+        Intent jokeIntent = getIntent();
+        if (jokeIntent != null) {
+            jokeContainer.setText(jokeIntent.getStringExtra(JOKE_TAG));
+        }
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_joke, menu);
         return true;
     }
 
@@ -45,12 +46,4 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void tellJoke(View view){
-        Intent tellAJoke = new Intent(this, JokeActivity.class);
-        tellAJoke.putExtra(JokeActivity.JOKE_TAG, jp.getJoke());
-        startActivity(tellAJoke);
-    }
-
-
 }
