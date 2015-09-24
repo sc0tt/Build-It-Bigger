@@ -1,26 +1,22 @@
 package com.udacity.gradle.builditbigger;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import io.adie.JokeProvider;
 import io.adie.jokeactivity.JokeActivity;
 
 
-public class MainActivity extends ActionBarActivity {
-    JokeProvider jp;
+public class MainActivity extends AppCompatActivity implements JokeAsyncTask.JokeResponse {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        jp = new JokeProvider();
     }
 
 
@@ -47,10 +43,13 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void tellJoke(View view){
-        Intent tellAJoke = new Intent(this, JokeActivity.class);
-        tellAJoke.putExtra(JokeActivity.JOKE_TAG, jp.getJoke());
-        startActivity(tellAJoke);
+        new JokeAsyncTask().execute();
     }
 
+    public void jokeRetrieved(String joke) {
+        Intent tellAJoke = new Intent(this, JokeActivity.class);
+        tellAJoke.putExtra(JokeActivity.JOKE_TAG, joke);
+        startActivity(tellAJoke);
+    }
 
 }

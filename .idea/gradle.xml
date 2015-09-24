@@ -10,9 +10,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/JokeAPI" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/jokeactivity" />
+            <option value="$PROJECT_DIR$/jokeapi" />
             <option value="$PROJECT_DIR$/jokeprovider" />
           </set>
         </option>
