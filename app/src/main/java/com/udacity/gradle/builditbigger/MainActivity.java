@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements JokeAsyncTask.Jok
     }
 
     public void tellJoke(View view){
-        new JokeAsyncTask().execute();
+        new JokeAsyncTask(this).execute();
     }
 
     public void jokeRetrieved(String joke) {

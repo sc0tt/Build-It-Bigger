@@ -12,6 +12,8 @@ import com.google.api.server.spi.config.ApiNamespace;
 
 import javax.inject.Named;
 
+import io.adie.jokeprovider.JokeProvider;
+
 //import io.adie.jokeprovider.JokeProvider;
 
 /**
@@ -27,7 +29,7 @@ import javax.inject.Named;
         )
 )
 public class MyEndpoint {
-    //JokeProvider jp = new JokeProvider();
+    JokeProvider jp = new JokeProvider();
     /**
      * A simple endpoint method that takes a name and says Hi back
      */
@@ -45,7 +47,7 @@ public class MyEndpoint {
     @ApiMethod(name = "getJoke")
     public MyBean getJoke() {
         MyBean response = new MyBean();
-        //response.setData(jp.getJoke());
+        response.setData(jp.getJoke());
 
         return response;
     }
